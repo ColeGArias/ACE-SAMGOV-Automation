@@ -4,6 +4,23 @@ Weekly collector that pulls newly-signed construction contract awards from SAM.g
 
 Run manually, or on a schedule (Windows Task Scheduler / cron) with no arguments for a normal weekly run.
 
+## Quick Start
+
+One-time setup (skip anything already done — e.g. `.env` may already exist):
+```
+pip install -r requirements.txt
+playwright install chromium
+```
+Copy `env.example` to `.env` and fill in values if you haven't already.
+
+Every time you want to run it:
+1. Run `launch_chrome_debug.bat` and leave the window open. First time only: log into SAM.gov in that window — the session is saved for future runs.
+2. Run `python sam_automation.py` (add `--dry-run` to preview without writing to Excel or sending email).
+
+For unattended/scheduled runs, point Task Scheduler at `run_sam_automation.bat` instead of step 2 — but the Chrome debug window from step 1 must already be running and logged in.
+
+See [Setup](#setup) below for more detail.
+
 ## Configuration
 
 All configuration is via environment variables, loaded from a `.env` file in the project root (copy `env.example` to `.env` and fill in values — `.env` is gitignored and must never be committed).
